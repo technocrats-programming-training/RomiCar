@@ -57,9 +57,4 @@ public class RobotTest {
         autoThread.interrupt();
         assert rightMotorHasBeenUsed.get();
     }
-
-    @Test
-    public void testPrints() {
-        DriverStationSim.
-    }
 }
