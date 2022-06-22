@@ -41,20 +41,4 @@ public class RobotTest {
         autoThread.interrupt();
         assert leftMotorHasBeenUsed.get();
     }
-
-    @Test
-    public void testUsesRightMotor() throws InterruptedException {
-        AtomicBoolean rightMotorHasBeenUsed = new AtomicBoolean(false);
-        NotifyCallback callback = (String name, HALValue value) -> {
-            if (value.getType() == HALValue.kDouble && value.getDouble() != 0) {
-                rightMotorHasBeenUsed.set(true);
-            }
-        };
-        CallbackStore store = simRightMotor.registerSpeedCallback(callback, false);
-        Thread autoThread = robot.getNewAutoThread();
-        autoThread.start();
-        Thread.sleep(15000);
-        autoThread.interrupt();
-        assert rightMotorHasBeenUsed.get();
-    }
 }
