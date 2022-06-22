@@ -10,7 +10,11 @@ import static lib.ProceduralRobot.sleep;
 
 public class Romi {
 
-    static Drivetrain drive = new Drivetrain();
+    private static Drivetrain drive;
+
+    public static void initRomiSubsystems() {
+        drive = new Drivetrain();
+    }
 
     public static void driveTime(double speed, double time) throws InterruptedException {
         Command driveTime = new DriveTime(speed, time, drive);

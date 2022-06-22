@@ -28,6 +28,7 @@ public abstract class ProceduralRobot extends RobotBase {
 
     @Override
     public void startCompetition() {
+        Romi.initRomiSubsystems();
         System.out.println("***** Procedural Robot Program Initialization Finished *****");
         HAL.observeUserProgramStarting(); // Tell the HAL process (which will tell the driver station) that the robot is
             // ready to be enabled. This is what causes the driver station to change from "No Robot Code" to "Teleoperation Disabled"
@@ -93,11 +94,15 @@ public abstract class ProceduralRobot extends RobotBase {
     }
 
     public static void callCommand(Command command) throws InterruptedException {
+        System.out.println("Starting " + command.getName());
+        command.initialize();
         while (!command.isFinished()) {
+            System.out.println("Running command cycle");
             command.execute();
             sleep(20);
         }
         command.end(false);
+        System.out.println("Stopping " + command.getName());
     }
 
 

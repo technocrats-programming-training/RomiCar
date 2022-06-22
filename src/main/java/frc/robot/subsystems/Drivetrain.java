@@ -45,6 +45,10 @@ public class Drivetrain extends SubsystemBase {
     m_leftEncoder.setDistancePerPulse((Math.PI * kWheelDiameterInch) / kCountsPerRevolution);
     m_rightEncoder.setDistancePerPulse((Math.PI * kWheelDiameterInch) / kCountsPerRevolution);
     resetEncoders();
+
+    m_leftMotor.setSafetyEnabled(false);
+    m_rightMotor.setSafetyEnabled(false);
+    m_diffDrive.setSafetyEnabled(false);
   }
 
   public void arcadeDrive(double xaxisSpeed, double zaxisRotate) {
