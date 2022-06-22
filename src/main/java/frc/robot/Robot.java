@@ -16,10 +16,6 @@ import static lib.Romi.turnTime;
 public class Robot extends ProceduralRobot {
   @Override
   public void autonomousProcedure() throws InterruptedException {
-     driveTime(1, 1);
-     System.out.println("Test Print 1");
-     sleepSeconds(1);
-     System.out.println("Test Print 2");
-     turnTime(1, 1);
+     
   }
 }
