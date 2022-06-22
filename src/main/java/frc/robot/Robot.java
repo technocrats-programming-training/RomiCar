@@ -16,6 +16,6 @@ import static lib.Romi.turnTime;
 public class Robot extends ProceduralRobot {
   @Override
   public void autonomousProcedure() throws InterruptedException {
-     
+    driveTime(1, 1);
   }
 }

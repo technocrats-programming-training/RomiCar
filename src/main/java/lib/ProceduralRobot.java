@@ -5,8 +5,6 @@ import edu.wpi.first.wpilibj.DSControlWord;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.DriveTime;
-import frc.robot.subsystems.Drivetrain;
 
 public abstract class ProceduralRobot extends RobotBase {
 
@@ -103,6 +101,10 @@ public abstract class ProceduralRobot extends RobotBase {
         }
         command.end(false);
         System.out.println("Stopping " + command.getName());
+    }
+
+    public Thread getNewAutoThread() {
+        return new Thread(new AutonomousRunnable());
     }
 
 
