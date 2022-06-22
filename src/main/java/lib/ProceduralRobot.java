@@ -11,7 +11,6 @@ import frc.robot.subsystems.Drivetrain;
 public abstract class ProceduralRobot extends RobotBase {
 
     Thread autoThread;
-    Drivetrain drive = new Drivetrain();
 
     private class AutonomousRunnable implements Runnable {
 
@@ -79,8 +78,12 @@ public abstract class ProceduralRobot extends RobotBase {
 
     }
 
-    protected void sleep(int milliseconds) throws InterruptedException {
+    public static void sleep(int milliseconds) throws InterruptedException {
         Thread.sleep(milliseconds);
+    }
+
+    public static void sleepSeconds(double seconds) throws InterruptedException {
+        Thread.sleep((long) (seconds * 1000));
     }
 
     public abstract void autonomousProcedure() throws InterruptedException;
@@ -89,12 +92,13 @@ public abstract class ProceduralRobot extends RobotBase {
 
     }
 
-    public void driveTime(double speed, double time) throws InterruptedException {
-        Command driveTime = new DriveTime(speed, time, drive);
-        while (!driveTime.isFinished()) {
-            driveTime.execute();
+    public static void callCommand(Command command) throws InterruptedException {
+        while (!command.isFinished()) {
+            command.execute();
             sleep(20);
         }
-        driveTime.end(false);
+        command.end(false);
     }
+
+
 }

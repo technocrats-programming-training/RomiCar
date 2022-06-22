@@ -9,12 +9,15 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import lib.ProceduralRobot;
 
+import static lib.Romi.driveTime;
+import static lib.Romi.turnTime;
+
 
 public class Robot extends ProceduralRobot {
   @Override
   public void autonomousProcedure() throws InterruptedException {
      driveTime(1, 1);
-     turnDegrees(90);
-     driveTime(0.5, 1);
+     sleepSeconds(1);
+     turnTime(1, 1);
   }
 }
