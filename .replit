@@ -1,2 +1,1 @@
 run = "chmod +x ./gradlew && ./gradlew test"
-language = java
