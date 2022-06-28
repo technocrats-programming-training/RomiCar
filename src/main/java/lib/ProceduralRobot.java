@@ -5,10 +5,15 @@ import edu.wpi.first.wpilibj.DSControlWord;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj2.command.Command;
+//import digitalinput class
 
 public abstract class ProceduralRobot extends RobotBase {
 
-    Thread autoThread;
+    private Thread autoThread;
+    protected DigitalInput buttonA = new DigitalInput(0);
+    protected DigitalInput buttonB = new DigitalInput(1);
+    protected DigitalInput buttonC = new DigitalInput(2);
+
 
     private class AutonomousRunnable implements Runnable {
 
@@ -109,3 +114,5 @@ public abstract class ProceduralRobot extends RobotBase {
 
 
 }
+
+
