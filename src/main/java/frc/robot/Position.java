@@ -5,9 +5,9 @@ import static lib.Romi.turnDegrees;
 
 public class Position {
 
-    double xPosition = 0;
-    double yPosition = 0;
-    double positionalPointing = 0;
+    int xPosition = 0;
+    int yPosition = 0;
+    int positionalPointing = 0;
 
     public void driveUp() throws InterruptedException {
         turnDegrees(-positionalPointing);
@@ -38,5 +38,9 @@ public class Position {
 
     public void returnToHome() {
 
+    }
+
+    public String toString() {
+        return "(" + xPosition + ", " + yPosition + ")";
     }
 }

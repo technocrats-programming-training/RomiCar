@@ -1,44 +1,85 @@
 package frc.robot;
 
 import edu.wpi.first.hal.HAL;
-import edu.wpi.first.hal.HALValue;
-import edu.wpi.first.hal.simulation.NotifyCallback;
-import edu.wpi.first.wpilibj.simulation.CallbackStore;
-import edu.wpi.first.wpilibj.simulation.PWMSim;
 import lib.Romi;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.concurrent.atomic.AtomicBoolean;
+import static lib.Romi.initRomiSubsystems;
+import static org.junit.Assert.assertEquals;
 
 
 public class RobotTest {
-    PWMSim simLeftMotor;
-    PWMSim simRightMotor;
-    Robot robot;
+
+    Position position;
 
     @Before
     public void setup() {
         assert HAL.initialize(500, 0);
-        simLeftMotor = new PWMSim(0);
-        simRightMotor = new PWMSim(1);
-        robot = new Robot();
-        Romi.initRomiSubsystems();
+        Romi.enableTestMode(true);
+        position = new Position();
     }
 
     @Test
-    public void testUsesLeftMotor() throws InterruptedException {
-        AtomicBoolean leftMotorHasBeenUsed = new AtomicBoolean(false);
-        NotifyCallback callback = (String name, HALValue value) -> {
-            if (value.getType() == HALValue.kDouble && value.getDouble() != 0) {
-                leftMotorHasBeenUsed.set(true);
-            }
-        };
-        CallbackStore store = simLeftMotor.registerSpeedCallback(callback, false);
-        Thread autoThread = robot.getNewAutoThread();
-        autoThread.start();
-        Thread.sleep(15000);
-        autoThread.interrupt();
-        assert leftMotorHasBeenUsed.get();
+    public void testInitialPositionCorrect() {
+        assertEquals(position.toString(), "(0, 0)");
+    }
+
+    @Test
+    public void testPositionCorrectAfterUp() {
+        try {
+            position.driveUp();
+        } catch (InterruptedException e) {
+            throw new AssertionError();
+        }
+        assertEquals(position.toString(), "(0, 10)");
+    }
+
+    @Test
+    public void testPositionCorrectAfterRight() {
+        try {
+            position.driveRight();
+        } catch (InterruptedException e) {
+            throw new AssertionError();
+        }
+        assertEquals(position.toString(), "(10, 0)");
+    }
+
+    @Test
+    public void testPositionCorrectAfterDown() {
+        try {
+            position.driveDown();
+        } catch (InterruptedException e) {
+            throw new AssertionError();
+        }
+        assertEquals(position.toString(), "(0, -10)");
+    }
+
+    @Test
+    public void testPositionCorrectAfterLeft() {
+        try {
+            position.driveLeft();
+        } catch (InterruptedException e) {
+            throw new AssertionError();
+        }
+        assertEquals(position.toString(), "(-10, 0)");
+    }
+
+    @Test
+    public void testPositionCorrectAfterSequenceRLRRLUDUU() {
+        try {
+            position.driveRight();
+            position.driveLeft();
+            position.driveRight();
+            position.driveRight();
+            position.driveLeft();
+            position.driveUp();
+            position.driveDown();
+            position.driveUp();
+            position.driveUp();
+        } catch (InterruptedException e) {
+            throw new AssertionError();
+        }
+        assertEquals("(10, 20)", position.toString());
     }
 }
