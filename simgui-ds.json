@@ -23,12 +23,13 @@
         }
       ],
       "axisCount": 3,
-      "buttonCount": 4,
+      "buttonCount": 5,
       "buttonKeys": [
-        90,
-        88,
-        67,
-        86
+        265,
+        264,
+        263,
+        262,
+        72
       ],
       "povConfig": [
         {
@@ -66,16 +67,6 @@
       "povCount": 0
     },
     {
-      "axisConfig": [
-        {
-          "decKey": 263,
-          "incKey": 262
-        },
-        {
-          "decKey": 265,
-          "incKey": 264
-        }
-      ],
       "axisCount": 2,
       "buttonCount": 6,
       "buttonKeys": [
