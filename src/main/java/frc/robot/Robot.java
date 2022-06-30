@@ -20,7 +20,7 @@ public class Robot extends ProceduralRobot {
     Joystick joystick = new Joystick(0);
     Position position = new Position();
     Scanner sc = new Scanner(System.in);
-    for (int i = 0; i<4; i++) {
+    for (int i = 0; i==-1; i++) {
       if(joystick.getRawButton(1)) {
         // UP
         position.driveUp();
