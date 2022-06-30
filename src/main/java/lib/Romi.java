@@ -1,7 +1,9 @@
 package lib;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.DriveDistance;
 import frc.robot.commands.DriveTime;
+import frc.robot.commands.TurnDegrees;
 import frc.robot.commands.TurnTime;
 import frc.robot.subsystems.Drivetrain;
 
@@ -24,6 +26,16 @@ public class Romi {
     public static void turnTime(double speed, double time) throws InterruptedException {
         Command turnTime = new TurnTime(speed, time, drive);
         callCommand(turnTime);
+    }
+
+    public static void driveDistance(double inches) throws InterruptedException {
+        Command driveDistance = new DriveDistance(0.5, inches, drive);
+        callCommand(driveDistance);
+    }
+
+    public static void turnDegrees(double degrees) throws InterruptedException {
+        Command turnDegrees = new TurnDegrees(0.5, degrees, drive);
+        callCommand(turnDegrees);
     }
 
 

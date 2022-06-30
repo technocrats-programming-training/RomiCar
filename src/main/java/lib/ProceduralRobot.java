@@ -2,6 +2,7 @@ package lib;
 
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.DSControlWord;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -97,15 +98,15 @@ public abstract class ProceduralRobot extends RobotBase {
     }
 
     public static void callCommand(Command command) throws InterruptedException {
-        System.out.println("Starting " + command.getName());
+//        System.out.println("Starting " + command.getName());
         command.initialize();
         while (!command.isFinished()) {
-            System.out.println("Running command cycle");
+//            System.out.println("Running command cycle");
             command.execute();
             sleep(20);
         }
         command.end(false);
-        System.out.println("Stopping " + command.getName());
+//        System.out.println("Stopping " + command.getName());
     }
 
     public Thread getNewAutoThread() {

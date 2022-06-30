@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.simulation.EncoderSim;
 import frc.robot.sensors.RomiGyro;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -24,6 +25,10 @@ public class Drivetrain extends SubsystemBase {
   // to use DIO pins 4/5 and 6/7 for the left and right
   private final Encoder m_leftEncoder = new Encoder(4, 5);
   private final Encoder m_rightEncoder = new Encoder(6, 7);
+
+  private final EncoderSim m_leftEncoderSim = new EncoderSim(m_leftEncoder);
+
+  private final EncoderSim m_rightEncoderSim = new EncoderSim(m_rightEncoder);
 
   // Set up the differential drive controller
   private final DifferentialDrive m_diffDrive = new DifferentialDrive(m_leftMotor, m_rightMotor);
@@ -143,4 +148,7 @@ public class Drivetrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public void simulationPeriodic() {}
+
 }
