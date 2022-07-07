@@ -19,7 +19,6 @@ public class Robot extends ProceduralRobot {
   public void autonomousProcedure() throws InterruptedException {
     Joystick joystick = new Joystick(0);
     Position position = new Position();
-    Scanner sc = new Scanner(System.in);
     for (int i = 0; i==-1; i++) {
       if(joystick.getRawButton(1)) {
         // UP
@@ -37,10 +36,8 @@ public class Robot extends ProceduralRobot {
         // Home
         break;
       } else {
-        System.out.println("No Command Given");
       }
     }
-    System.out.println("Returning Home Now...");
     position.returnToHome();
 
   }
